@@ -1,0 +1,54 @@
+{
+    "name": "eryndrix/exception-logger",
+    "type": "library",
+    "description": "Exception logging package for Laravel with PSR-3 levels and attribute-based configuration.",
+    "keywords": [
+        "laravel",
+        "logging",
+        "psr-3",
+        "exceptions"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vladislav Malikov",
+            "homepage": "https://github.com/eryndrix"
+        }
+    ],
+    "require": {
+        "php": "^8.5",
+        "illuminate/support": "^13.0"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^11.0",
+        "pestphp/pest": "^5.1",
+        "pestphp/pest-plugin-laravel": "^5.0",
+        "larastan/larastan": "^3.11",
+        "phpstan/phpstan": "^2.2",
+        "phpstan/phpstan-strict-rules": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Eryndrix\\Logging\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Eryndrix\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Eryndrix\\Logging\\ExceptionLoggerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    }
+}

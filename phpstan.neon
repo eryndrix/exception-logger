@@ -1,0 +1,16 @@
+parameters:
+  level: max
+  strictRules:
+    allRules: true
+  fileExtensions:
+    - php
+  paths:
+    - src/
+  tmpDir: tmp
+  reportUnmatchedIgnoredErrors: true
+  treatPhpDocTypesAsCertain: false
+
+includes:
+  - vendor/phpstan/phpstan-strict-rules/rules.neon
+  - phar://./vendor/phpstan/phpstan/phpstan.phar/conf/bleedingEdge.neon
+  - vendor/larastan/larastan/extension.neon
