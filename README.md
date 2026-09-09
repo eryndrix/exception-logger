@@ -36,9 +36,9 @@ php artisan vendor:publish --tag="exception-logger-config"
 1. Use built-in exceptions
 
 ```php
-use Ekara\Logging\Exceptions\PaginationException;
-use Ekara\Logging\Exceptions\UserNotFoundException;
-use Ekara\Logging\Exceptions\UnexpectedException;
+use Eryndrix\Logging\Exceptions\PaginationException;
+use Eryndrix\Logging\Exceptions\UserNotFoundException;
+use Eryndrix\Logging\Exceptions\UnexpectedException;
 
 throw new PaginationException(perPage: 500);    // WARNING
 throw new UserNotFoundException();              // WARNING
@@ -48,7 +48,7 @@ throw new UnexpectedException(message: 'Oops'); // CRITICAL
 2. Or create your own
 
 ```php
-use Ekara\Logging\Attributes\{Level, Log};
+use Eryndrix\Logging\Attributes\{Level, Log};
 
 #[Log(level: Level::WARNING)]
 final class PaginationException extends \DomainException {}
@@ -65,7 +65,7 @@ final class UnexpectedException extends \RuntimeException {}
 Inject `ExceptionLoggerInterface` and call `log()`:
 
 ```php
-use Ekara\Logging\Contracts\ExceptionLoggerInterface;
+use Eryndrix\Logging\Contracts\ExceptionLoggerInterface;
 
 class MyService
 {
@@ -204,9 +204,9 @@ With the default config, a `PaginationException` produces:
 {
   "message": "Per page must be between 1 and 100. Given: 500.",
   "context": {
-    "exception": "Ekara\\Logging\\Exceptions\\PaginationException",
+    "exception": "Eryndrix\\Logging\\Exceptions\\PaginationException",
     "code": 0,
-    "file": "/vendor/ekara/exception-logger/src/Exceptions/PaginationException.php",
+    "file": "/vendor/eryndrix/exception-logger/src/Exceptions/PaginationException.php",
     "line": 24
   },
   "level": "warning"
