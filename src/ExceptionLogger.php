@@ -1,9 +1,10 @@
 <?php declare(strict_types=1);
 
-namespace Eryndrix\Logging;
+namespace Ekara\Logging;
 
-use Eryndrix\Logging\Contracts\{LoggerInterface, ExceptionLoggerInterface};
-use Eryndrix\Logging\Attributes\{Level, Log};
+use Ekara\Logging\Contracts\LoggerInterface;
+use Ekara\Logging\Contracts\ExceptionLoggerInterface;
+use Ekara\Logging\Attributes\{Level, Log};
 
 final class ExceptionLogger implements ExceptionLoggerInterface
 {

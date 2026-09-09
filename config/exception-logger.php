@@ -43,7 +43,7 @@ return [
     'exception_levels' => [
         \DomainException::class => 'warning',
         \InvalidArgumentException::class => 'warning',
-
+        
         // Add your own mappings here:
         // \App\Exceptions\PaginationException::class => 'warning',
         // \App\Exceptions\UserNotFoundException::class => 'warning',

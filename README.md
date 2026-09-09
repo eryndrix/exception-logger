@@ -1,12 +1,16 @@
 # Exception Logger
 
-Laravel package for exception logging with PSR-3 levels and attribute-based configuration.
+A Laravel package for structured exception logging with PSR-3 levels and attribute-based configuration. It allows you to define log levels per exception class using PHP attributes or configuration, and customize which exception details (_stack trace, file, line, etc._) are included in logs based on severity.
+
+[![PHP Version](https://img.shields.io/badge/PHP-^8.5-blue.svg)](https://php.net)
+[![Laravel Version](https://img.shields.io/badge/Laravel-^13.0-red.svg)](https://laravel.com)
+[![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 ## Features
 
-- **PSR-3 Log Levels**: Support for all 8 PSR-3 log levels (debug, info, notice, warning, error, critical, alert, emergency)
+- **PSR-3 compliant**: Supports all 8 standard log levels (`debug`, `info`, `notice`, `warning`, `error`, `critical`, `alert`, `emergency`)
 - **Attribute-Based Configuration**: Use `#[Log]` attribute to define log level on exception classes
-- **Configurable Context**: Control which exception details to include in logs (exception class, code, file, line, trace)
+- **Configurable Context**: Control which exception details to include in logs (_exception class, code, file, line, trace_)
 - **Level-Specific Context**: Different context configuration for each log level
 - **Exception Level Mapping**: Map exception classes to log levels via config
 
@@ -16,67 +20,52 @@ Laravel package for exception logging with PSR-3 levels and attribute-based conf
 composer require eryndrix/exception-logger
 ```
 
-## Configuration
-
-Publish the config file:
+The service provider auto-registers. To publish the configuration file:
 
 ```bash
 php artisan vendor:publish --tag="exception-logger-config"
 ```
 
-Config file (`config/exception-logger.php`):
+## Requirements
+
+- PHP ^8.5
+- Laravel ^13.0
+
+## Quick Start
+
+1. Use built-in exceptions
 
 ```php
-return [
-    'default_level' => env('DEFAULT_LOG_LEVEL', 'error'),
-    
-    'exception_levels' => [
-        \DomainException::class => 'warning',
-        \InvalidArgumentException::class => 'warning',
-    ],
-    
-    'context' => [
-        'emergency' => [
-            'exception' => true,
-            'code' => true,
-            'file' => true,
-            'line' => true,
-            'trace' => true,
-        ],
-        'error' => [
-            'exception' => true,
-            'code' => true,
-            'file' => true,
-            'line' => true,
-            'trace' => false,
-        ],
-        'warning' => [
-            'exception' => true,
-            'code' => true,
-            'file' => false,
-            'line' => false,
-            'trace' => false,
-        ],
-        'info' => [
-            'exception' => true,
-            'code' => false,
-            'file' => false,
-            'line' => false,
-            'trace' => false,
-        ],
-        // ... other levels
-    ],
-];
+use Ekara\Logging\Exceptions\PaginationException;
+use Ekara\Logging\Exceptions\UserNotFoundException;
+use Ekara\Logging\Exceptions\UnexpectedException;
+
+throw new PaginationException(perPage: 500);    // WARNING
+throw new UserNotFoundException();              // WARNING
+throw new UnexpectedException(message: 'Oops'); // CRITICAL
 ```
 
-## Usage
-
-### Basic Usage
-
-The package automatically registers service provider. Use dependency injection:
+2. Or create your own
 
 ```php
-use Eryndrix\Logging\Contracts\ExceptionLoggerInterface;
+use Ekara\Logging\Attributes\{Level, Log};
+
+#[Log(level: Level::WARNING)]
+final class PaginationException extends \DomainException {}
+
+#[Log(level: Level::WARNING)]
+final class UserNotFoundException extends \LogicException {}
+
+#[Log(level: Level::CRITICAL)]
+final class UnexpectedException extends \RuntimeException {}
+```
+
+3. Log exceptions
+
+Inject `ExceptionLoggerInterface` and call `log()`:
+
+```php
+use Ekara\Logging\Contracts\ExceptionLoggerInterface;
 
 class MyService
 {
@@ -89,29 +78,21 @@ class MyService
         try {
             // ...
         } catch (\Throwable $e) {
-            $this->logger->log($e);
+            $this->logger->log(exception: $e);
         }
     }
 }
 ```
 
-### Log Attribute
+The logger resolves the level in this order:
 
-Define log level on exception class:
-
-```php
-use Eryndrix\Logging\Attributes\{Level, Log};
-
-#[Log(level: Level::WARNING)]
-class BusinessException extends \DomainException {}
-
-#[Log(level: Level::CRITICAL)]
-class CriticalException extends \RuntimeException {}
-```
+- `#[Log]` attribute on the exception class
+- `exception_levels` config mapping
+- `default_level` fallback
 
 ### Logger Interface
 
-Use `LoggerInterface` for direct logging:
+For direct logging without level resolution, use `LoggerInterface`:
 
 ```php
 use Eryndrix\Logging\Contracts\LoggerInterface;
@@ -124,45 +105,118 @@ class MyService
     
     public function handle(): void
     {
-        $exception = new \RuntimeException('error');
+        $exception = new \RuntimeException(
+            message: 'error'
+        );
         
-        $this->logger->error('Something went wrong', $exception);
-        $this->logger->warning('Potential issue', $exception);
-        $this->logger->debug('Debug info', $exception);
+        $this->logger->error(
+            message: 'Something went wrong',
+            e: $exception
+        );
+
+        $this->logger->warning(
+            message: 'Potential issue',
+            e: $exception
+        );
+
+        $this->logger->debug(
+            message: 'Debug info',
+            e: $exception
+        );
     }
 }
 ```
 
-Available methods: `emergency()`, `alert()`, `critical()`, `error()`, `warning()`, `notice()`, `info()`, `debug()`.
+## Configuration
 
-## Context Configuration
+The published config (`config/exception-logger.php`) has three sections:
 
-Control which exception details to include in logs per level:
+```
+default_level
+```
+
+Fallback level for exceptions without explicit configuration:
+
+```php
+'default_level' => env('DEFAULT_LOG_LEVEL', 'error')
+```
+
+**Tip**: Use `error` in production, `debug` in development.
+
+```
+exception_levels
+```
+
+Map exception classes to levels without modifying them:
+
+```php
+'exception_levels' => [
+    \DomainException::class => 'warning',
+    \InvalidArgumentException::class => 'warning',
+    \App\Exceptions\PaginationException::class => 'warning',
+]
+```
+
+```
+context
+```
+
+Control which details to include per log level:
 
 ```php
 'context' => [
     'emergency' => [
-        'exception' => true,  // Exception class name
-        'code' => true,       // Exception code
-        'file' => true,       // File where thrown
-        'line' => true,       // Line number
-        'trace' => true,      // Full stack trace
+        'exception' => true,
+        'code' => true,
+        'file' => true,
+        'line' => true,
+        'trace' => true,
+    ],
+    'error' => [
+        'exception' => true,
+        'code' => true,
+        'file' => true,
+        'line' => true,
+        'trace' => false,
     ],
     'warning' => [
         'exception' => true,
         'code' => true,
-        'file' => false,      // Disable for warnings
-        'line' => false,
-        'trace' => false,
-    ],
-    'info' => [
-        'exception' => true,
-        'code' => false,
         'file' => false,
         'line' => false,
         'trace' => false,
     ],
-],
+    // ... other levels
+]
+```
+
+Available fields:
+
+| Field       | Description                                   |
+|-------------|-----------------------------------------------|
+| `exception` | Exception class name                          |
+| `code`      | Exception code (_integer_)                    |
+| `file`      | File where exception was thrown (_full path_) |
+| `line`      | Line number                                   |
+| `trace`     | Full stack trace (_can be very verbose_)      |
+
+**Security note**: In production, disable `file`, `line`, and `trace` to avoid exposing internal paths.
+
+## Example Log Output
+
+With the default config, a `PaginationException` produces:
+
+```json
+{
+  "message": "Per page must be between 1 and 100. Given: 500.",
+  "context": {
+    "exception": "Ekara\\Logging\\Exceptions\\PaginationException",
+    "code": 0,
+    "file": "/vendor/ekara/exception-logger/src/Exceptions/PaginationException.php",
+    "line": 24
+  },
+  "level": "warning"
+}
 ```
 
 ## Testing
@@ -172,3 +226,6 @@ Run package tests:
 ```bash
 ./vendor/bin/pest
 ```
+## License
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).

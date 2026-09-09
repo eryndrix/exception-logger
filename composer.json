@@ -1,5 +1,5 @@
 {
-    "name": "eryndrix/exception-logger",
+    "name": "ekara/exception-logger",
     "type": "library",
     "description": "Exception logging package for Laravel with PSR-3 levels and attribute-based configuration.",
     "keywords": [
@@ -29,18 +29,18 @@
     },
     "autoload": {
         "psr-4": {
-            "Eryndrix\\Logging\\": "src/"
+            "Ekara\\Logging\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "Eryndrix\\Tests\\": "tests/"
+            "Tests\\": "tests/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Eryndrix\\Logging\\ExceptionLoggerServiceProvider"
+                "Ekara\\Logging\\Providers\\ExceptionLoggerServiceProvider"
             ]
         }
     },

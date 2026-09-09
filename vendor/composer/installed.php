@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'eryndrix/exception-logger',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'name' => 'ekara/exception-logger',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '0c64b59c37fb3f06fe11b322f82b410873501846',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -112,10 +112,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'eryndrix/exception-logger' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+        'ekara/exception-logger' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '0c64b59c37fb3f06fe11b322f82b410873501846',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -584,9 +584,9 @@
             'dev_requirement' => true,
         ),
         'monolog/monolog' => array(
-            'pretty_version' => '3.11.0',
-            'version' => '3.11.0.0',
-            'reference' => '147f303310f06334f03f409e49d7ad1e275ff05a',
+            'pretty_version' => '3.12.0',
+            'version' => '3.12.0.0',
+            'reference' => '72c534fc0ab181ef52d92a68382318631e301608',
             'type' => 'library',
             'install_path' => __DIR__ . '/../monolog/monolog',
             'aliases' => array(),

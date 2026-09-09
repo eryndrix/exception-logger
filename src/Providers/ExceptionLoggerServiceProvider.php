@@ -1,9 +1,11 @@
 <?php declare(strict_types=1);
 
-namespace Eryndrix\Logging;
+namespace Ekara\Logging\Providers;
 
-use Eryndrix\Logging\Contracts\LoggerInterface;
-use Eryndrix\Logging\Contracts\ExceptionLoggerInterface;
+use Ekara\Logging\Contracts\LoggerInterface;
+use Ekara\Logging\Logger;
+use Ekara\Logging\Contracts\ExceptionLoggerInterface;
+use Ekara\Logging\ExceptionLogger;
 use Illuminate\Contracts\Support\DeferrableProvider;
 use Illuminate\Support\ServiceProvider;
 

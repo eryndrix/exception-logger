@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Eryndrix\Logging\ContextBuilder;
+use Ekara\Logging\ContextBuilder;
 
 it('includes file and line when enabled', function (): void {
     $config = [

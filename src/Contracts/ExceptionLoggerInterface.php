@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Eryndrix\Logging\Contracts;
+namespace Ekara\Logging\Contracts;
 
 interface ExceptionLoggerInterface
 {

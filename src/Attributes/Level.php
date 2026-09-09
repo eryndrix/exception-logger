@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Eryndrix\Logging\Attributes;
+namespace Ekara\Logging\Attributes;
 
 enum Level: string
 {

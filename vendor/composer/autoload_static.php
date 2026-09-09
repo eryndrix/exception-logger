@@ -75,6 +75,7 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         'T' => 
         array (
             'TijsVerkoyen\\CssToInlineStyles\\' => 31,
+            'Tests\\' => 6,
             'Termwind\\' => 9,
         ),
         'S' => 
@@ -197,8 +198,7 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         ),
         'E' => 
         array (
-            'Eryndrix\\Tests\\' => 15,
-            'Eryndrix\\Logging\\' => 17,
+            'Ekara\\Logging\\' => 14,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -249,6 +249,10 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         'TijsVerkoyen\\CssToInlineStyles\\' => 
         array (
             0 => __DIR__ . '/..' . '/tijsverkoyen/css-to-inline-styles/src',
+        ),
+        'Tests\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests',
         ),
         'Termwind\\' => 
         array (
@@ -600,11 +604,7 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
-        'Eryndrix\\Tests\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/tests',
-        ),
-        'Eryndrix\\Logging\\' => 
+        'Ekara\\Logging\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
