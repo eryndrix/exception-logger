@@ -131,9 +131,7 @@ class MyService
 
 The published config (`config/exception-logger.php`) has three sections:
 
-```
-default_level
-```
+`default_level`
 
 Fallback level for exceptions without explicit configuration:
 
@@ -143,9 +141,7 @@ Fallback level for exceptions without explicit configuration:
 
 **Tip**: Use `error` in production, `debug` in development.
 
-```
-exception_levels
-```
+`exception_levels`
 
 Map exception classes to levels without modifying them:
 
@@ -157,9 +153,7 @@ Map exception classes to levels without modifying them:
 ]
 ```
 
-```
-context
-```
+`context`
 
 Control which details to include per log level:
 
