@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ekara\Logging\Attributes;
+namespace Eryndrix\Logging\Attributes;
 
 #[\Attribute(flags: \Attribute::TARGET_CLASS)]
 final readonly class Log

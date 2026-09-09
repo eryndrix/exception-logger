@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ekara\Logging\Exceptions;
+namespace Eryndrix\Logging\Exceptions;
 
-use Ekara\Logging\Attributes\{Level, Log};
+use Eryndrix\Logging\Attributes\{Level, Log};
 
 #[Log(level: Level::WARNING)]
 final class UserNotFoundException extends \LogicException

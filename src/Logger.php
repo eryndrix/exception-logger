@@ -1,8 +1,8 @@
 <?php declare(strict_types=1);
 
-namespace Ekara\Logging;
+namespace Eryndrix\Logging;
 
-use Ekara\Logging\Contracts\LoggerInterface;
+use Eryndrix\Logging\Contracts\LoggerInterface;
 use Illuminate\Support\Facades\Log;
 
 final class Logger implements LoggerInterface

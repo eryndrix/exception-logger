@@ -1,9 +1,9 @@
 <?php return array(
     'root' => array(
-        'name' => 'ekara/exception-logger',
+        'name' => 'eryndrix/exception-logger',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '6f5c3b27157b453db5e56c68ff9247a3bda637ec',
+        'reference' => 'c31aa7bd0d7cddb86267a36cc8ae16a81677fdc2',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -112,10 +112,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'ekara/exception-logger' => array(
+        'eryndrix/exception-logger' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '6f5c3b27157b453db5e56c68ff9247a3bda637ec',
+            'reference' => 'c31aa7bd0d7cddb86267a36cc8ae16a81677fdc2',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-use Ekara\Logging\ContextBuilder;
+use Eryndrix\Logging\ContextBuilder;
 
 it('builds context with partial config', function (): void {
     $config = [

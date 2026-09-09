@@ -1,6 +1,6 @@
 <?php declare(strict_types=1);
 
-namespace Ekara\Logging\Contracts;
+namespace Eryndrix\Logging\Contracts;
 
 interface LoggerInterface
 {

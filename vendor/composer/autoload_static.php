@@ -198,7 +198,7 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         ),
         'E' => 
         array (
-            'Ekara\\Logging\\' => 14,
+            'Eryndrix\\Logging\\' => 17,
             'Egulias\\EmailValidator\\' => 23,
         ),
         'D' => 
@@ -604,7 +604,7 @@ class ComposerStaticInit10c319ab19eee8f0808d0bb3f6d538d3
         array (
             0 => __DIR__ . '/..' . '/fakerphp/faker/src/Faker',
         ),
-        'Ekara\\Logging\\' => 
+        'Eryndrix\\Logging\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
