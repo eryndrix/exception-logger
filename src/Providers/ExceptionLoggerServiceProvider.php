@@ -18,7 +18,7 @@ final class ExceptionLoggerServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(
-            path: __DIR__ . '/../config/exception-logger.php',
+            path: __DIR__ . '/../../config/exception-logger.php',
             key: 'exception-logger'
         );
 
@@ -41,7 +41,7 @@ final class ExceptionLoggerServiceProvider extends ServiceProvider
         if ($this->app->runningInConsole()) {
             $this->publishes(
                 paths: [
-                    __DIR__ . '/../config/exception-logger.php' => config_path(
+                    __DIR__ . '/../../config/exception-logger.php' => config_path(
                         path: 'exception-logger.php'
                     )
                 ],

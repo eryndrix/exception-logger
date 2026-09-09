@@ -3,7 +3,7 @@
         'name' => 'ekara/exception-logger',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '0c64b59c37fb3f06fe11b322f82b410873501846',
+        'reference' => '6f5c3b27157b453db5e56c68ff9247a3bda637ec',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -115,7 +115,7 @@
         'ekara/exception-logger' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '0c64b59c37fb3f06fe11b322f82b410873501846',
+            'reference' => '6f5c3b27157b453db5e56c68ff9247a3bda637ec',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
